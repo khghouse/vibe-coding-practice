@@ -1,10 +1,10 @@
-package com.practice.cursor.common.security;
+package com.practice.cursor.global.security;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.practice.cursor.common.exception.ErrorCode;
-import com.practice.cursor.common.response.ApiResponse;
-import com.practice.cursor.common.service.TokenRedisService;
-import com.practice.cursor.common.util.JwtUtil;
+import com.practice.cursor.global.exception.ErrorCode;
+import com.practice.cursor.global.response.ApiResponse;
+import com.practice.cursor.global.service.TokenRedisService;
+import com.practice.cursor.global.util.JwtUtil;
 import com.practice.cursor.domain.member.entity.Role;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.MalformedJwtException;

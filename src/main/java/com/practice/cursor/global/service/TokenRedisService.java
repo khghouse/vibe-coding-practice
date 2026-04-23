@@ -1,8 +1,8 @@
-package com.practice.cursor.common.service;
+package com.practice.cursor.global.service;
 
-import com.practice.cursor.common.exception.CustomException;
-import com.practice.cursor.common.exception.ErrorCode;
-import com.practice.cursor.common.util.RedisUtil;
+import com.practice.cursor.global.exception.CustomException;
+import com.practice.cursor.global.exception.ErrorCode;
+import com.practice.cursor.global.util.RedisUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;

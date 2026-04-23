@@ -1,6 +1,6 @@
-package com.practice.cursor.common.exception;
+package com.practice.cursor.global.exception;
 
-import com.practice.cursor.common.response.ApiResponse;
+import com.practice.cursor.global.response.ApiResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;

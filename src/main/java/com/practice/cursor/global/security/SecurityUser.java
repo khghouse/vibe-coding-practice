@@ -1,4 +1,4 @@
-package com.practice.cursor.common.security;
+package com.practice.cursor.global.security;
 
 import com.practice.cursor.domain.member.entity.Member;
 import com.practice.cursor.domain.member.entity.Role;

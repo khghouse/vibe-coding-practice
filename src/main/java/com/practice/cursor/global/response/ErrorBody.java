@@ -1,6 +1,6 @@
-package com.practice.cursor.common.response;
+package com.practice.cursor.global.response;
 
-import com.practice.cursor.common.exception.ErrorCode;
+import com.practice.cursor.global.exception.ErrorCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -16,7 +16,7 @@ public class ErrorBody {
         this.message = message;
     }
 
-    public static ErrorBody fromErrorCode(ErrorCode errorCode) {
+    public static ErrorBody from(ErrorCode errorCode) {
         return new ErrorBody(errorCode.getCode(), errorCode.getMessage());
     }
 

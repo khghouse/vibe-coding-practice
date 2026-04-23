@@ -1,4 +1,4 @@
-package com.practice.cursor.common.config;
+package com.practice.cursor.global.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

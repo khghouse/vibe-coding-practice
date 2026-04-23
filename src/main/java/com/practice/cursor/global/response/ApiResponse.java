@@ -1,19 +1,17 @@
-package com.practice.cursor.common.response;
+package com.practice.cursor.global.response;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.practice.cursor.common.exception.ErrorCode;
+import com.practice.cursor.global.exception.ErrorCode;
 import lombok.Builder;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 
 @Getter
 @Builder
-@NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ApiResponse<T> {
 
-    private int status;
-    private boolean success;
+    private final int status;
+    private final boolean success;
     private T data;
     private ErrorBody error;
 
@@ -43,12 +41,12 @@ public class ApiResponse<T> {
         return ApiResponse.<Void>builder()
                 .status(errorCode.getStatus())
                 .success(false)
-                .error(ErrorBody.fromErrorCode(errorCode))
+                .error(ErrorBody.from(errorCode))
                 .build();
     }
 
     public static ApiResponse<Void> fail(ErrorCode errorCode, String overrideMessage) {
-        ErrorBody body = ErrorBody.fromErrorCode(errorCode);
+        ErrorBody body = ErrorBody.from(errorCode);
         if (overrideMessage != null && !overrideMessage.isBlank()) {
             body = new ErrorBody(body.getCode(), overrideMessage);
         }

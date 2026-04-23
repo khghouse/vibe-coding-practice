@@ -1,8 +1,8 @@
-package com.practice.cursor.common.security;
+package com.practice.cursor.global.security;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.practice.cursor.common.exception.ErrorCode;
-import com.practice.cursor.common.response.ApiResponse;
+import com.practice.cursor.global.exception.ErrorCode;
+import com.practice.cursor.global.response.ApiResponse;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;

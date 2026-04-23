@@ -1,4 +1,4 @@
-package com.practice.cursor.common.util;
+package com.practice.cursor.global.util;
 
 import java.time.Duration;
 import lombok.RequiredArgsConstructor;

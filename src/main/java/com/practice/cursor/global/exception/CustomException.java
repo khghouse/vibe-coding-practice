@@ -1,4 +1,4 @@
-package com.practice.cursor.common.exception;
+package com.practice.cursor.global.exception;
 
 import lombok.Getter;
 

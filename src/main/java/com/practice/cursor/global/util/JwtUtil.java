@@ -1,4 +1,4 @@
-package com.practice.cursor.common.util;
+package com.practice.cursor.global.util;
 
 import com.practice.cursor.domain.member.entity.Role;
 import io.jsonwebtoken.Claims;
