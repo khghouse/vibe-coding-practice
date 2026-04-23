@@ -43,7 +43,7 @@ class TodoControllerTest extends ControllerTestSupport {
 
     @Test
     @DisplayName("POST 등록 요청이 성공하면 201과 ApiResponse로 본문을 반환한다")
-    void register_returnsCreatedWithApiResponse() throws Exception {
+    void register_validRequest_returnsOkWithApiResponse() throws Exception {
         when(todoService.register(any(TodoCreateServiceRequest.class))).thenReturn(sample(1L));
 
         mockMvc.perform(post("/api/todos")
@@ -73,7 +73,7 @@ class TodoControllerTest extends ControllerTestSupport {
 
     @Test
     @DisplayName("PUT 수정 성공 시 200과 ApiResponse")
-    void update_returnsOk() throws Exception {
+    void update_validRequest_returnsOkWithApiResponse() throws Exception {
         when(todoService.update(eq(1L), any(TodoUpdateServiceRequest.class))).thenReturn(sample(1L));
 
         mockMvc.perform(put("/api/todos/1")
@@ -88,7 +88,7 @@ class TodoControllerTest extends ControllerTestSupport {
 
     @Test
     @DisplayName("GET 단건 조회 성공")
-    void getById_returnsOk() throws Exception {
+    void getById_existingTodo_returnsOkWithApiResponse() throws Exception {
         when(todoService.getById(1L)).thenReturn(sample(1L));
 
         mockMvc.perform(get("/api/todos/1"))
@@ -99,7 +99,7 @@ class TodoControllerTest extends ControllerTestSupport {
 
     @Test
     @DisplayName("GET 단건 없으면 404")
-    void getById_notFound_returns404() throws Exception {
+    void getById_missingTodo_returnsNotFound() throws Exception {
         when(todoService.getById(99L)).thenThrow(new CustomException(ErrorCode.TODO_NOT_FOUND));
 
         mockMvc.perform(get("/api/todos/99"))
@@ -109,7 +109,7 @@ class TodoControllerTest extends ControllerTestSupport {
 
     @Test
     @DisplayName("GET 전체 조회")
-    void findAll_returnsList() throws Exception {
+    void findAll_existingTodos_returnsOkWithList() throws Exception {
         LocalDateTime now = LocalDateTime.of(2026, 4, 2, 12, 0, 0);
         when(todoService.findAll())
                 .thenReturn(
@@ -126,7 +126,7 @@ class TodoControllerTest extends ControllerTestSupport {
 
     @Test
     @DisplayName("PATCH 완료 처리")
-    void complete_returnsOk() throws Exception {
+    void complete_existingTodo_returnsOkWithCompletedTodo() throws Exception {
         LocalDateTime now = LocalDateTime.of(2026, 4, 2, 12, 0, 0);
         when(todoService.complete(1L)).thenReturn(new TodoResponse(1L, "할 일", null, false, true, now, now));
 
@@ -137,7 +137,7 @@ class TodoControllerTest extends ControllerTestSupport {
 
     @Test
     @DisplayName("DELETE 소프트 삭제")
-    void delete_returnsOk() throws Exception {
+    void delete_existingTodo_returnsOkWithDeletedTodo() throws Exception {
         LocalDateTime now = LocalDateTime.of(2026, 4, 2, 12, 0, 0);
         when(todoService.delete(1L)).thenReturn(new TodoResponse(1L, "할 일", null, true, false, now, now));
 

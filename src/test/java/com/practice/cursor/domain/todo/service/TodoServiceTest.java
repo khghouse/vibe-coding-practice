@@ -34,7 +34,7 @@ class TodoServiceTest extends IntegrationTestSupport {
 
     @Test
     @DisplayName("할 일을 등록할 수 있다")
-    void register_success() {
+    void register_validRequest_returnsTodoResponse() {
         // given
         TodoCreateServiceRequest request = TodoCreateServiceRequest.of("할 일 제목", "할 일 내용");
 
@@ -59,7 +59,7 @@ class TodoServiceTest extends IntegrationTestSupport {
 
     @Test
     @DisplayName("할 일을 수정할 수 있다")
-    void update_success() {
+    void update_existingTodo_updatesTodo() {
         // given
         Todo savedTodo = todoRepository.save(Todo.create("원래 제목", "원래 내용"));
         TodoUpdateServiceRequest request = TodoUpdateServiceRequest.of("수정된 제목", "수정된 내용");
@@ -77,7 +77,7 @@ class TodoServiceTest extends IntegrationTestSupport {
 
     @Test
     @DisplayName("존재하지 않는 할 일을 수정하려 하면 예외가 발생한다")
-    void update_notFound() {
+    void update_missingTodo_throwsCustomException() {
         // given
         TodoUpdateServiceRequest request = TodoUpdateServiceRequest.of("수정된 제목", "수정된 내용");
 
@@ -89,7 +89,7 @@ class TodoServiceTest extends IntegrationTestSupport {
 
     @Test
     @DisplayName("할 일을 단건 조회할 수 있다")
-    void getById_success() {
+    void getById_existingTodo_returnsTodoResponse() {
         // given
         Todo savedTodo = todoRepository.save(Todo.create("할 일 제목", "할 일 내용"));
 
@@ -106,7 +106,7 @@ class TodoServiceTest extends IntegrationTestSupport {
 
     @Test
     @DisplayName("존재하지 않는 할 일을 조회하려 하면 예외가 발생한다")
-    void getById_notFound() {
+    void getById_missingTodo_throwsCustomException() {
         // when & then
         assertThatThrownBy(() -> todoService.getById(999L))
                 .isInstanceOf(CustomException.class)
@@ -115,7 +115,7 @@ class TodoServiceTest extends IntegrationTestSupport {
 
     @Test
     @DisplayName("모든 할 일을 조회할 수 있다")
-    void findAll_success() {
+    void findAll_existingTodos_returnsTodoResponses() {
         // given
         todoRepository.save(Todo.create("할 일 1", "내용 1"));
         todoRepository.save(Todo.create("할 일 2", "내용 2"));
@@ -133,7 +133,7 @@ class TodoServiceTest extends IntegrationTestSupport {
 
     @Test
     @DisplayName("할 일을 완료 처리할 수 있다")
-    void complete_success() {
+    void complete_existingTodo_marksCompleted() {
         // given
         Todo savedTodo = todoRepository.save(Todo.create("할 일 제목", "할 일 내용"));
 
@@ -152,7 +152,7 @@ class TodoServiceTest extends IntegrationTestSupport {
 
     @Test
     @DisplayName("존재하지 않는 할 일을 완료 처리하려 하면 예외가 발생한다")
-    void complete_notFound() {
+    void complete_missingTodo_throwsCustomException() {
         // when & then
         assertThatThrownBy(() -> todoService.complete(999L))
                 .isInstanceOf(CustomException.class)
@@ -161,7 +161,7 @@ class TodoServiceTest extends IntegrationTestSupport {
 
     @Test
     @DisplayName("할 일을 삭제할 수 있다")
-    void delete_success() {
+    void delete_existingTodo_marksDeleted() {
         // given
         Todo savedTodo = todoRepository.save(Todo.create("할 일 제목", "할 일 내용"));
 
@@ -180,7 +180,7 @@ class TodoServiceTest extends IntegrationTestSupport {
 
     @Test
     @DisplayName("존재하지 않는 할 일을 삭제하려 하면 예외가 발생한다")
-    void delete_notFound() {
+    void delete_missingTodo_throwsCustomException() {
         // when & then
         assertThatThrownBy(() -> todoService.delete(999L))
                 .isInstanceOf(CustomException.class)

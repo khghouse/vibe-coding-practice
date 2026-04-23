@@ -23,7 +23,7 @@ class TodoRepositoryTest extends RepositoryTestSupport {
 
     @Test
     @DisplayName("할 일을 저장할 수 있다")
-    void save_success() {
+    void save_validTodo_returnsSavedTodo() {
         // given
         Todo todo = Todo.create("할 일 제목", "할 일 내용");
 
@@ -42,7 +42,7 @@ class TodoRepositoryTest extends RepositoryTestSupport {
 
     @Test
     @DisplayName("ID로 할 일을 조회할 수 있다")
-    void findById_success() {
+    void findById_existingTodo_returnsTodo() {
         // given
         Todo savedTodo = todoRepository.save(Todo.create("할 일 제목", "할 일 내용"));
 
@@ -57,7 +57,7 @@ class TodoRepositoryTest extends RepositoryTestSupport {
 
     @Test
     @DisplayName("존재하지 않는 ID로 조회하면 빈 Optional을 반환한다")
-    void findById_notFound() {
+    void findById_missingTodo_returnsEmptyOptional() {
         // when
         Optional<Todo> foundTodo = todoRepository.findById(999L);
 
@@ -67,7 +67,7 @@ class TodoRepositoryTest extends RepositoryTestSupport {
 
     @Test
     @DisplayName("모든 할 일을 조회할 수 있다")
-    void findAll_success() {
+    void findAll_existingTodos_returnsTodos() {
         // given
         todoRepository.save(Todo.create("할 일 1", "내용 1"));
         todoRepository.save(Todo.create("할 일 2", "내용 2"));
@@ -85,7 +85,7 @@ class TodoRepositoryTest extends RepositoryTestSupport {
 
     @Test
     @DisplayName("삭제되지 않은 할 일만 조회할 수 있다")
-    void findAllByDeletedFalseOrderByIdAsc_success() {
+    void findAllByDeletedFalseOrderByIdAsc_deletedTodo_returnsActiveTodos() {
         // given
         Todo todo1 = todoRepository.save(Todo.create("할 일 1", "내용 1"));
         Todo todo2 = todoRepository.save(Todo.create("할 일 2", "내용 2"));
@@ -107,7 +107,7 @@ class TodoRepositoryTest extends RepositoryTestSupport {
 
     @Test
     @DisplayName("할 일을 수정할 수 있다")
-    void update_success() throws InterruptedException {
+    void save_updatedTodo_persistsChanges() throws InterruptedException {
         // given
         Todo savedTodo = todoRepository.save(Todo.create("원래 제목", "원래 내용"));
         
@@ -126,7 +126,7 @@ class TodoRepositoryTest extends RepositoryTestSupport {
 
     @Test
     @DisplayName("할 일을 완료 처리할 수 있다")
-    void complete_success() throws InterruptedException {
+    void save_completedTodo_persistsCompletedState() throws InterruptedException {
         // given
         Todo savedTodo = todoRepository.save(Todo.create("할 일 제목", "할 일 내용"));
         
@@ -144,7 +144,7 @@ class TodoRepositoryTest extends RepositoryTestSupport {
 
     @Test
     @DisplayName("할 일을 삭제 처리할 수 있다")
-    void delete_success() throws InterruptedException {
+    void save_deletedTodo_persistsDeletedState() throws InterruptedException {
         // given
         Todo savedTodo = todoRepository.save(Todo.create("할 일 제목", "할 일 내용"));
         
@@ -162,7 +162,7 @@ class TodoRepositoryTest extends RepositoryTestSupport {
 
     @Test
     @DisplayName("JPA Auditing이 정상 동작한다")
-    void jpaAuditing_success() {
+    void jpaAuditing_savedTodo_populatesAuditFields() {
         // given
         Todo todo = Todo.create("할 일 제목", "할 일 내용");
 

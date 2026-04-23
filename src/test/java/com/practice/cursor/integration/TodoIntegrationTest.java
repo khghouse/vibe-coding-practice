@@ -32,7 +32,7 @@ class TodoIntegrationTest extends IntegrationTestSupport {
 
     @Test
     @DisplayName("할 일 등록부터 완료까지 전체 플로우가 정상 동작한다")
-    void todoCompleteFlow_success() {
+    void todoCompleteFlow_registeredTodo_completesSuccessfully() {
         // given - 할 일 등록
         TodoCreateServiceRequest createRequest = TodoCreateServiceRequest.of("통합 테스트", "E2E 플로우 검증");
         
@@ -65,7 +65,7 @@ class TodoIntegrationTest extends IntegrationTestSupport {
 
     @Test
     @DisplayName("여러 할 일을 등록하고 목록 조회가 정상 동작한다")
-    void multipleTodosFlow_success() {
+    void multipleTodosFlow_deletedTodo_returnsOnlyActiveTodos() {
         // given - 여러 할 일 등록
         TodoCreateServiceRequest request1 = TodoCreateServiceRequest.of("할 일 1", "첫 번째");
         TodoCreateServiceRequest request2 = TodoCreateServiceRequest.of("할 일 2", "두 번째");
@@ -98,7 +98,7 @@ class TodoIntegrationTest extends IntegrationTestSupport {
 
     @Test
     @DisplayName("할 일 수정 플로우가 정상 동작한다")
-    void todoUpdateFlow_success() {
+    void todoUpdateFlow_existingTodo_updatesSuccessfully() {
         // given - 할 일 등록
         TodoCreateServiceRequest createRequest = TodoCreateServiceRequest.of("원래 제목", "원래 내용");
         TodoResponse createdTodo = todoService.register(createRequest);

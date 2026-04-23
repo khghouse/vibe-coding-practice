@@ -62,7 +62,7 @@ class TodoTest {
 
     @Test
     @DisplayName("제목 앞뒤 공백은 제거된 뒤 길이를 검증한다")
-    void create_trimsTitleBeforeLengthCheck() {
+    void create_titleWithOuterSpaces_returnsTrimmedTitle() {
         Todo todo = Todo.create("  가나다  ", null);
 
         assertThat(todo.getTitle()).isEqualTo("가나다");
@@ -70,7 +70,7 @@ class TodoTest {
 
     @Test
     @DisplayName("트림 후 제목이 1자이면 생성에 실패한다")
-    void create_trimmedTitleTooShort_fails() {
+    void create_trimmedTitleTooShort_throwsCustomException() {
         assertThatThrownBy(() -> Todo.create(" a ", null))
                 .isInstanceOf(CustomException.class)
                 .hasMessage(ErrorCode.TODO_TITLE_LENGTH_INVALID.formatMessage(2, 50))
@@ -80,7 +80,7 @@ class TodoTest {
 
     @Test
     @DisplayName("제목이 1자이면 생성에 실패한다")
-    void create_titleTooShort_fails() {
+    void create_titleTooShort_throwsCustomException() {
         assertThatThrownBy(() -> Todo.create("a", null))
                 .isInstanceOf(CustomException.class)
                 .hasMessage(ErrorCode.TODO_TITLE_LENGTH_INVALID.formatMessage(2, 50))
@@ -90,7 +90,7 @@ class TodoTest {
 
     @Test
     @DisplayName("제목이 51자 이상이면 생성에 실패한다")
-    void create_titleTooLong_fails() {
+    void create_titleTooLong_throwsCustomException() {
         String fiftyOne = "b".repeat(51);
 
         assertThatThrownBy(() -> Todo.create(fiftyOne, null))
@@ -101,7 +101,7 @@ class TodoTest {
 
     @Test
     @DisplayName("내용이 501자 이상이면 생성에 실패한다")
-    void create_contentTooLong_fails() {
+    void create_contentTooLong_throwsCustomException() {
         String fiveHundredOne = "c".repeat(501);
 
         assertThatThrownBy(() -> Todo.create("유효한제목입니다", fiveHundredOne))
@@ -113,7 +113,7 @@ class TodoTest {
 
     @Test
     @DisplayName("제목이 null이면 생성에 실패한다")
-    void create_nullTitle_fails() {
+    void create_nullTitle_throwsCustomException() {
         assertThatThrownBy(() -> Todo.create(null, "내용"))
                 .isInstanceOf(CustomException.class)
                 .hasMessage(ErrorCode.TODO_TITLE_REQUIRED.getMessage())
@@ -124,7 +124,7 @@ class TodoTest {
     @NullAndEmptySource
     @ValueSource(strings = {" ", "  ", "\t", "\n"})
     @DisplayName("제목이 비어 있거나 공백만 있으면 생성에 실패한다")
-    void create_blankTitle_fails(String title) {
+    void create_blankTitle_throwsCustomException(String title) {
         assertThatThrownBy(() -> Todo.create(title, "내용"))
                 .isInstanceOf(CustomException.class)
                 .hasMessage(ErrorCode.TODO_TITLE_REQUIRED.getMessage())
@@ -133,7 +133,7 @@ class TodoTest {
 
     @Test
     @DisplayName("complete()는 완료 상태로 만든다")
-    void complete_setsCompleted() {
+    void complete_existingTodo_setsCompleted() {
         Todo todo = Todo.create("할일", null);
 
         todo.complete();
@@ -143,7 +143,7 @@ class TodoTest {
 
     @Test
     @DisplayName("삭제된 할 일은 complete()할 수 없다")
-    void complete_whenDeleted_throws() {
+    void complete_deletedTodo_throwsCustomException() {
         Todo todo = Todo.create("할일", null);
         todo.delete();
 
@@ -154,7 +154,7 @@ class TodoTest {
 
     @Test
     @DisplayName("delete()는 소프트 삭제한다")
-    void delete_setsDeleted() {
+    void delete_existingTodo_setsDeleted() {
         Todo todo = Todo.create("할일", null);
 
         todo.delete();
@@ -164,7 +164,7 @@ class TodoTest {
 
     @Test
     @DisplayName("updateTitleAndContent는 제목·내용을 바꾼다")
-    void updateTitleAndContent_changesFields() {
+    void updateTitleAndContent_validTitleAndContent_changesFields() {
         Todo todo = Todo.create("이전", "옛내용");
 
         todo.updateTitleAndContent("다음", "새내용");
@@ -175,7 +175,7 @@ class TodoTest {
 
     @Test
     @DisplayName("삭제된 할 일은 수정할 수 없다")
-    void update_whenDeleted_throws() {
+    void updateTitleAndContent_deletedTodo_throwsCustomException() {
         Todo todo = Todo.create("할일", null);
         todo.delete();
 
