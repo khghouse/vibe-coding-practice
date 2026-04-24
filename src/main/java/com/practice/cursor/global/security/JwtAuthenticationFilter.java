@@ -15,13 +15,13 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.List;
+import java.util.Collection;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
@@ -106,15 +106,11 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     private void setAuthentication(String token) {
         Long memberId = jwtTokenProvider.extractMemberId(token);
         Role role = jwtTokenProvider.extractRole(token);
-        
-        String roleName = "ROLE_" + role.name();
-        List<SimpleGrantedAuthority> authorities = List.of(new SimpleGrantedAuthority(roleName));
-        
-        Authentication authentication = new UsernamePasswordAuthenticationToken(
-                memberId, 
-                null, 
-                authorities
-        );
+
+        MemberPrincipal memberPrincipal = MemberPrincipal.authenticated(memberId, role);
+        Collection<? extends GrantedAuthority> authorities = memberPrincipal.getAuthorities();
+
+        Authentication authentication = new UsernamePasswordAuthenticationToken(memberPrincipal, null, authorities);
         
         SecurityContextHolder.getContext().setAuthentication(authentication);
     }

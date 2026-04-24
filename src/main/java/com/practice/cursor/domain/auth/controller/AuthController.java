@@ -6,6 +6,7 @@ import com.practice.cursor.domain.auth.dto.request.LoginServiceRequest;
 import com.practice.cursor.domain.auth.dto.request.ReissueRequest;
 import com.practice.cursor.domain.auth.dto.response.TokenResponse;
 import com.practice.cursor.domain.auth.service.AuthService;
+import com.practice.cursor.global.security.MemberPrincipal;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -53,9 +54,9 @@ public class AuthController {
     @PostMapping("/logout")
     public ApiResponse<Void> logout(HttpServletRequest request, Authentication authentication) {
         String accessToken = extractTokenFromRequest(request);
-        Long memberId = (Long) authentication.getPrincipal();
+        MemberPrincipal memberPrincipal = (MemberPrincipal) authentication.getPrincipal();
         
-        authService.logout(accessToken, memberId);
+        authService.logout(accessToken, memberPrincipal.getMemberId());
         return ApiResponse.ok();
     }
 

@@ -23,6 +23,6 @@ public class SecurityUserDetailsService implements UserDetailsService {
         Member member = memberRepository.findByLoginId(loginId)
                 .orElseThrow(() -> new UsernameNotFoundException("회원을 찾을 수 없습니다: " + loginId));
         
-        return new MemberPrincipal(member);
+        return MemberPrincipal.from(member);
     }
 }
