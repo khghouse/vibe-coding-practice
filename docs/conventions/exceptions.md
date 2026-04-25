@@ -16,6 +16,14 @@
 - 예: `UserDetailsService#loadUserByUsername`는 `UsernameNotFoundException` 유지
 - 이런 예외는 프레임워크 경계에서만 사용하고, 애플리케이션 서비스/도메인 계층으로 전파하지 않도록 어댑터 또는 Provider에서 `CustomException(ErrorCode)`로 변환한다.
 
+## 인증 / 보안 예외 응답
+
+- JWT 인증 필터는 Authorization 헤더에 Bearer 토큰이 존재하는 경우만 동작한다.
+- 토큰이 존재할 때의 검증 실패는 `JwtAuthenticationFilter`가 직접 응답한다.
+- 이 경우 `TOKEN_INVALID`, `TOKEN_EXPIRED`, `TOKEN_TYPE_INVALID`, `TOKEN_BLACKLISTED` 중 하나로 반환한다.
+- `JwtAuthenticationEntryPoint`는 토큰이 없거나 인증 자체가 시작되지 못한 경우만 처리한다.
+- Authorization 헤더가 없으면 `TOKEN_MISSING`, 헤더 형식이 Bearer 규약에 맞지 않으면 `TOKEN_INVALID`를 반환한다.
+
 ## 적용 이유
 
 - 표준 예외는 일관된 API 에러 응답을 만들기 어렵다.
