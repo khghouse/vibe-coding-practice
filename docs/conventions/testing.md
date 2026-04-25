@@ -56,7 +56,9 @@ src/test/java/com/example/{프로젝트명}/
 ### ControllerTestSupport
 
 - `@WebMvcTest` 사용
-- 공통 `MockBean`은 부모 클래스에서 관리한다.
+- 공통 보안/인프라 설정만 부모 클래스에서 관리한다.
+- 도메인 서비스 `@MockBean`은 각 Controller 테스트 클래스에서 직접 선언한다.
+- 부모 클래스는 `JwtAuthenticationFilter`, `JwtAuthenticationEntryPoint`, `MemberAuthenticationProvider`처럼 여러 Controller 테스트에서 반복되는 보안 의존성만 가진다.
 
 ### RestDocsSupport
 

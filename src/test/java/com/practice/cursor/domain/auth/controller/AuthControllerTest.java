@@ -19,6 +19,7 @@ import com.practice.cursor.domain.auth.dto.request.RegisterRequest;
 import com.practice.cursor.domain.auth.dto.request.RegisterServiceRequest;
 import com.practice.cursor.domain.auth.dto.response.RegisterResponse;
 import com.practice.cursor.domain.auth.dto.response.TokenResponse;
+import com.practice.cursor.domain.auth.service.AuthService;
 import com.practice.cursor.global.exception.GlobalExceptionHandler;
 import com.practice.cursor.global.security.MemberPrincipal;
 import com.practice.cursor.domain.member.entity.Role;
@@ -26,6 +27,8 @@ import com.practice.cursor.support.ControllerTestSupport;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -33,7 +36,11 @@ import org.springframework.security.core.Authentication;
 import org.springframework.test.web.servlet.MockMvc;
 
 @Import(GlobalExceptionHandler.class)
+@WebMvcTest(AuthController.class)
 class AuthControllerTest extends ControllerTestSupport {
+
+    @MockBean
+    private AuthService authService;
 
     @Autowired
     private MockMvc mockMvc;
