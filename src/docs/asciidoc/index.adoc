@@ -10,4 +10,6 @@ include::src/docs/asciidoc/sections/overview.adoc[]
 
 include::src/docs/asciidoc/sections/common-response.adoc[]
 
+include::src/docs/asciidoc/sections/auth.adoc[]
+
 include::src/docs/asciidoc/sections/todo.adoc[]

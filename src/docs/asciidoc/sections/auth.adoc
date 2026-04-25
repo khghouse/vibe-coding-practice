@@ -1,0 +1,32 @@
+[[resources-auth]]
+== Auth
+
+Auth 리소스는 회원가입, 로그인, 토큰 재발급, 로그아웃을 관리하는 API입니다.
+
+[[resources-auth-register]]
+=== 회원가입
+
+`POST` 요청을 사용해서 새 회원을 등록할 수 있습니다.
+
+operation::auth-controller-docs-test/register_valid-request_generates-document[snippets='http-request,request-fields,http-response,response-fields']
+
+[[resources-auth-login]]
+=== 로그인
+
+`POST` 요청을 사용해서 로그인하고 토큰을 발급받을 수 있습니다.
+
+operation::auth-controller-docs-test/login_valid-request_generates-document[snippets='http-request,request-fields,http-response,response-fields']
+
+[[resources-auth-reissue]]
+=== 토큰 재발급
+
+`POST` 요청을 사용해서 리프레시 토큰으로 토큰을 재발급받을 수 있습니다.
+
+operation::auth-controller-docs-test/reissue_valid-request_generates-document[snippets='http-request,request-fields,http-response,response-fields']
+
+[[resources-auth-logout]]
+=== 로그아웃
+
+`POST` 요청을 사용해서 현재 액세스 토큰을 로그아웃 처리할 수 있습니다.
+
+operation::auth-controller-docs-test/logout_authenticated-request_generates-document[snippets='http-request,http-response,response-fields']
