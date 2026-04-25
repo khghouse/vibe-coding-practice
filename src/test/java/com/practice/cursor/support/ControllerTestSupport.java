@@ -1,8 +1,19 @@
 package com.practice.cursor.support;
 
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.doAnswer;
+
+import com.practice.cursor.domain.auth.service.AuthService;
 import com.practice.cursor.domain.todo.service.TodoService;
+import com.practice.cursor.global.config.SecurityConfig;
+import jakarta.servlet.FilterChain;
+import com.practice.cursor.global.security.JwtAuthenticationEntryPoint;
+import com.practice.cursor.global.security.JwtAuthenticationFilter;
+import com.practice.cursor.global.security.MemberAuthenticationProvider;
+import org.junit.jupiter.api.BeforeEach;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.context.annotation.Import;
 import org.springframework.test.context.ActiveProfiles;
 
 /**
@@ -13,8 +24,30 @@ import org.springframework.test.context.ActiveProfiles;
  */
 @WebMvcTest
 @ActiveProfiles("test")
+@Import(SecurityConfig.class)
 public abstract class ControllerTestSupport {
 
     @MockBean
     protected TodoService todoService;
+
+    @MockBean
+    protected AuthService authService;
+
+    @MockBean
+    protected JwtAuthenticationFilter jwtAuthenticationFilter;
+
+    @MockBean
+    protected JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
+
+    @MockBean
+    protected MemberAuthenticationProvider memberAuthenticationProvider;
+
+    @BeforeEach
+    void setUpJwtAuthenticationFilter() throws Exception {
+        doAnswer(invocation -> {
+            FilterChain filterChain = invocation.getArgument(2);
+            filterChain.doFilter(invocation.getArgument(0), invocation.getArgument(1));
+            return null;
+        }).when(jwtAuthenticationFilter).doFilter(any(), any(), any());
+    }
 }
