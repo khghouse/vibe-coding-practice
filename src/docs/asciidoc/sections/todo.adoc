@@ -11,39 +11,39 @@ Todo 리소스는 할 일을 관리하는 API입니다.
 
 `GET` 요청을 사용하여 서비스의 모든 Todo를 조회할 수 있습니다.
 
-operation::todo-controller-docs-test/get-todos_existing-todos_generates-document[snippets='response-fields,http-response,response-body']
+operation::todo-controller-docs-test/get-todos_existing-todos_generates-document[snippets='http-request,http-response,response-fields']
 
 [[resources-todos-create]]
 === Todo 생성
 
 `POST` 요청을 사용해서 새 Todo를 만들 수 있습니다.
 
-operation::todo-controller-docs-test/create-todo_valid-request_generates-document[snippets='request-fields,response-fields,http-request,http-response,request-body,response-body']
+operation::todo-controller-docs-test/create-todo_valid-request_generates-document[snippets='http-request,request-fields,http-response,response-fields']
 
 [[resources-todos-retrieve]]
 === Todo 조회
 
 `GET` 요청을 사용해서 기존 Todo 하나를 조회할 수 있습니다.
 
-operation::todo-controller-docs-test/get-todo_existing-todo_generates-document[snippets='path-parameters,response-fields,http-request,http-response,response-body']
+operation::todo-controller-docs-test/get-todo_existing-todo_generates-document[snippets='http-request,path-parameters,http-response,response-fields']
 
 [[resources-todos-update]]
 === Todo 수정
 
 `PUT` 요청을 사용해서 기존 Todo를 수정할 수 있습니다.
 
-operation::todo-controller-docs-test/update-todo_valid-request_generates-document[snippets='path-parameters,request-fields,response-fields,http-request,http-response,request-body,response-body']
+operation::todo-controller-docs-test/update-todo_valid-request_generates-document[snippets='http-request,path-parameters,request-fields,http-response,response-fields']
 
 [[resources-todos-complete]]
 === Todo 완료
 
 `PATCH` 요청을 사용해서 Todo를 완료 처리할 수 있습니다.
 
-operation::todo-controller-docs-test/complete-todo_existing-todo_generates-document[snippets='path-parameters,response-fields,http-request,http-response,response-body']
+operation::todo-controller-docs-test/complete-todo_existing-todo_generates-document[snippets='http-request,path-parameters,http-response,response-fields']
 
 [[resources-todos-delete]]
 === Todo 삭제
 
 `DELETE` 요청을 사용해서 기존 Todo를 삭제할 수 있습니다.
 
-operation::todo-controller-docs-test/delete-todo_existing-todo_generates-document[snippets='path-parameters,response-fields,http-request,http-response,response-body']
+operation::todo-controller-docs-test/delete-todo_existing-todo_generates-document[snippets='http-request,path-parameters,http-response,response-fields']

@@ -90,8 +90,18 @@ this.mockMvc = MockMvcBuilders.standaloneSetup(initController())
 - `pathParameters`, `requestFields`, `responseFields`의 모든 descriptor에는 `.type()`을 명시한다.
 - 필수 필드는 `.attributes(key("required").value("true"))`
 - 선택 필드는 `.optional().attributes(key("required").value("false"))`
-- 문서에서 필수/선택 여부가 드러나도록 설명 또는 템플릿에 반영한다.
+- 문서에서 필수/선택 여부는 description 본문에 `(필수)`, `(선택)`으로 섞어 쓰지 않고 별도 `Required` 컬럼으로 표현한다.
 - `LocalDateTime` 필드는 descriptor에서 `JsonFieldType.STRING`으로 명시하고, 설명에 `ISO-8601` 문자열 형식임을 드러낸다.
+
+## REST Docs 섹션 순서
+
+- 문서 섹션은 아래 순서를 기본으로 유지한다.
+- `HTTP request`
+- `Path Parameters` 또는 `Request Parameters`가 있으면 그 다음에 배치한다.
+- `Request fields`가 있으면 입력 파라미터 섹션 뒤에 배치한다.
+- `HTTP response`
+- `Response fields`
+- 즉, 최종 순서는 `HTTP request -> Path Parameters/Request Parameters -> Request fields -> HTTP response -> Response fields`를 따른다.
 
 ## AsciiDoc 문서 구조
 

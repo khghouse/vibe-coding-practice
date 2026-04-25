@@ -65,41 +65,41 @@ class TodoControllerDocsTest extends RestDocsSupport {
                         requestFields(
                                 fieldWithPath("title").type(JsonFieldType.STRING)
                                         .attributes(key("required").value("true"))
-                                        .description("할 일 제목 (2-50자, 필수)"),
+                                        .description("할 일 제목 (2-50자)"),
                                 fieldWithPath("content").type(JsonFieldType.STRING)
                                         .optional()
                                         .attributes(key("required").value("false"))
-                                        .description("할 일 내용 (최대 500자, 선택)")
+                                        .description("할 일 내용 (최대 500자)")
                         ),
                         responseFields(
                                 fieldWithPath("status").type(JsonFieldType.NUMBER)
                                         .attributes(key("required").value("true"))
-                                        .description("HTTP 상태 코드 (필수)"),
+                                        .description("HTTP 상태 코드"),
                                 fieldWithPath("success").type(JsonFieldType.BOOLEAN)
                                         .attributes(key("required").value("true"))
-                                        .description("성공 여부 (필수)"),
+                                        .description("성공 여부"),
                                 fieldWithPath("data.id").type(JsonFieldType.NUMBER)
                                         .attributes(key("required").value("true"))
-                                        .description("할 일 ID (필수)"),
+                                        .description("할 일 ID"),
                                 fieldWithPath("data.title").type(JsonFieldType.STRING)
                                         .attributes(key("required").value("true"))
-                                        .description("할 일 제목 (필수)"),
+                                        .description("할 일 제목"),
                                 fieldWithPath("data.content").type(JsonFieldType.STRING)
                                         .optional()
                                         .attributes(key("required").value("false"))
-                                        .description("할 일 내용 (선택)"),
+                                        .description("할 일 내용"),
                                 fieldWithPath("data.deleted").type(JsonFieldType.BOOLEAN)
                                         .attributes(key("required").value("true"))
-                                        .description("삭제 여부 (필수)"),
+                                        .description("삭제 여부"),
                                 fieldWithPath("data.completed").type(JsonFieldType.BOOLEAN)
                                         .attributes(key("required").value("true"))
-                                        .description("완료 여부 (필수)"),
+                                        .description("완료 여부"),
                                 fieldWithPath("data.createDateTime").type(JsonFieldType.STRING)
                                         .attributes(key("required").value("true"))
-                                        .description("생성 일시 (ISO-8601, 필수)"),
+                                        .description("생성 일시 (ISO-8601)"),
                                 fieldWithPath("data.modifiedDateTime").type(JsonFieldType.STRING)
                                         .attributes(key("required").value("true"))
-                                        .description("수정 일시 (ISO-8601, 필수)")
+                                        .description("수정 일시 (ISO-8601)")
                         )
                 ));
     }
@@ -128,37 +128,37 @@ class TodoControllerDocsTest extends RestDocsSupport {
                                 parameterWithName("id")
                                         .attributes(key("type").value("Number"))
                                         .attributes(key("required").value("true"))
-                                        .description("할 일 ID (필수)")
+                                        .description("할 일 ID")
                         ),
                         responseFields(
                                 fieldWithPath("status").type(JsonFieldType.NUMBER)
                                         .attributes(key("required").value("true"))
-                                        .description("HTTP 상태 코드 (필수)"),
+                                        .description("HTTP 상태 코드"),
                                 fieldWithPath("success").type(JsonFieldType.BOOLEAN)
                                         .attributes(key("required").value("true"))
-                                        .description("성공 여부 (필수)"),
+                                        .description("성공 여부"),
                                 fieldWithPath("data.id").type(JsonFieldType.NUMBER)
                                         .attributes(key("required").value("true"))
-                                        .description("할 일 ID (필수)"),
+                                        .description("할 일 ID"),
                                 fieldWithPath("data.title").type(JsonFieldType.STRING)
                                         .attributes(key("required").value("true"))
-                                        .description("할 일 제목 (필수)"),
+                                        .description("할 일 제목"),
                                 fieldWithPath("data.content").type(JsonFieldType.STRING)
                                         .optional()
                                         .attributes(key("required").value("false"))
-                                        .description("할 일 내용 (선택)"),
+                                        .description("할 일 내용"),
                                 fieldWithPath("data.deleted").type(JsonFieldType.BOOLEAN)
                                         .attributes(key("required").value("true"))
-                                        .description("삭제 여부 (필수)"),
+                                        .description("삭제 여부"),
                                 fieldWithPath("data.completed").type(JsonFieldType.BOOLEAN)
                                         .attributes(key("required").value("true"))
-                                        .description("완료 여부 (필수)"),
+                                        .description("완료 여부"),
                                 fieldWithPath("data.createDateTime").type(JsonFieldType.STRING)
                                         .attributes(key("required").value("true"))
-                                        .description("생성 일시 (ISO-8601, 필수)"),
+                                        .description("생성 일시 (ISO-8601)"),
                                 fieldWithPath("data.modifiedDateTime").type(JsonFieldType.STRING)
                                         .attributes(key("required").value("true"))
-                                        .description("수정 일시 (ISO-8601, 필수)")
+                                        .description("수정 일시 (ISO-8601)")
                         )
                 ));
     }
@@ -197,35 +197,35 @@ class TodoControllerDocsTest extends RestDocsSupport {
                         responseFields(
                                 fieldWithPath("status").type(JsonFieldType.NUMBER)
                                         .attributes(key("required").value("true"))
-                                        .description("HTTP 상태 코드 (필수)"),
+                                        .description("HTTP 상태 코드"),
                                 fieldWithPath("success").type(JsonFieldType.BOOLEAN)
                                         .attributes(key("required").value("true"))
-                                        .description("성공 여부 (필수)"),
+                                        .description("성공 여부"),
                                 fieldWithPath("data[]").type(JsonFieldType.ARRAY)
                                         .attributes(key("required").value("true"))
-                                        .description("할 일 목록 (필수)"),
+                                        .description("할 일 목록"),
                                 fieldWithPath("data[].id").type(JsonFieldType.NUMBER)
                                         .attributes(key("required").value("true"))
-                                        .description("할 일 ID (필수)"),
+                                        .description("할 일 ID"),
                                 fieldWithPath("data[].title").type(JsonFieldType.STRING)
                                         .attributes(key("required").value("true"))
-                                        .description("할 일 제목 (필수)"),
+                                        .description("할 일 제목"),
                                 fieldWithPath("data[].content").type(JsonFieldType.STRING)
                                         .optional()
                                         .attributes(key("required").value("false"))
-                                        .description("할 일 내용 (선택)"),
+                                        .description("할 일 내용"),
                                 fieldWithPath("data[].deleted").type(JsonFieldType.BOOLEAN)
                                         .attributes(key("required").value("true"))
-                                        .description("삭제 여부 (필수)"),
+                                        .description("삭제 여부"),
                                 fieldWithPath("data[].completed").type(JsonFieldType.BOOLEAN)
                                         .attributes(key("required").value("true"))
-                                        .description("완료 여부 (필수)"),
+                                        .description("완료 여부"),
                                 fieldWithPath("data[].createDateTime").type(JsonFieldType.STRING)
                                         .attributes(key("required").value("true"))
-                                        .description("생성 일시 (ISO-8601, 필수)"),
+                                        .description("생성 일시 (ISO-8601)"),
                                 fieldWithPath("data[].modifiedDateTime").type(JsonFieldType.STRING)
                                         .attributes(key("required").value("true"))
-                                        .description("수정 일시 (ISO-8601, 필수)")
+                                        .description("수정 일시 (ISO-8601)")
                         )
                 ));
     }
@@ -257,46 +257,46 @@ class TodoControllerDocsTest extends RestDocsSupport {
                                 parameterWithName("id")
                                         .attributes(key("type").value("Number"))
                                         .attributes(key("required").value("true"))
-                                        .description("할 일 ID (필수)")
+                                        .description("할 일 ID")
                         ),
                         requestFields(
                                 fieldWithPath("title").type(JsonFieldType.STRING)
                                         .attributes(key("required").value("true"))
-                                        .description("할 일 제목 (2-50자, 필수)"),
+                                        .description("할 일 제목 (2-50자)"),
                                 fieldWithPath("content").type(JsonFieldType.STRING)
                                         .optional()
                                         .attributes(key("required").value("false"))
-                                        .description("할 일 내용 (최대 500자, 선택)")
+                                        .description("할 일 내용 (최대 500자)")
                         ),
                         responseFields(
                                 fieldWithPath("status").type(JsonFieldType.NUMBER)
                                         .attributes(key("required").value("true"))
-                                        .description("HTTP 상태 코드 (필수)"),
+                                        .description("HTTP 상태 코드"),
                                 fieldWithPath("success").type(JsonFieldType.BOOLEAN)
                                         .attributes(key("required").value("true"))
-                                        .description("성공 여부 (필수)"),
+                                        .description("성공 여부"),
                                 fieldWithPath("data.id").type(JsonFieldType.NUMBER)
                                         .attributes(key("required").value("true"))
-                                        .description("할 일 ID (필수)"),
+                                        .description("할 일 ID"),
                                 fieldWithPath("data.title").type(JsonFieldType.STRING)
                                         .attributes(key("required").value("true"))
-                                        .description("할 일 제목 (필수)"),
+                                        .description("할 일 제목"),
                                 fieldWithPath("data.content").type(JsonFieldType.STRING)
                                         .optional()
                                         .attributes(key("required").value("false"))
-                                        .description("할 일 내용 (선택)"),
+                                        .description("할 일 내용"),
                                 fieldWithPath("data.deleted").type(JsonFieldType.BOOLEAN)
                                         .attributes(key("required").value("true"))
-                                        .description("삭제 여부 (필수)"),
+                                        .description("삭제 여부"),
                                 fieldWithPath("data.completed").type(JsonFieldType.BOOLEAN)
                                         .attributes(key("required").value("true"))
-                                        .description("완료 여부 (필수)"),
+                                        .description("완료 여부"),
                                 fieldWithPath("data.createDateTime").type(JsonFieldType.STRING)
                                         .attributes(key("required").value("true"))
-                                        .description("생성 일시 (ISO-8601, 필수)"),
+                                        .description("생성 일시 (ISO-8601)"),
                                 fieldWithPath("data.modifiedDateTime").type(JsonFieldType.STRING)
                                         .attributes(key("required").value("true"))
-                                        .description("수정 일시 (ISO-8601, 필수)")
+                                        .description("수정 일시 (ISO-8601)")
                         )
                 ));
     }
@@ -325,37 +325,37 @@ class TodoControllerDocsTest extends RestDocsSupport {
                                 parameterWithName("id")
                                         .attributes(key("type").value("Number"))
                                         .attributes(key("required").value("true"))
-                                        .description("할 일 ID (필수)")
+                                        .description("할 일 ID")
                         ),
                         responseFields(
                                 fieldWithPath("status").type(JsonFieldType.NUMBER)
                                         .attributes(key("required").value("true"))
-                                        .description("HTTP 상태 코드 (필수)"),
+                                        .description("HTTP 상태 코드"),
                                 fieldWithPath("success").type(JsonFieldType.BOOLEAN)
                                         .attributes(key("required").value("true"))
-                                        .description("성공 여부 (필수)"),
+                                        .description("성공 여부"),
                                 fieldWithPath("data.id").type(JsonFieldType.NUMBER)
                                         .attributes(key("required").value("true"))
-                                        .description("할 일 ID (필수)"),
+                                        .description("할 일 ID"),
                                 fieldWithPath("data.title").type(JsonFieldType.STRING)
                                         .attributes(key("required").value("true"))
-                                        .description("할 일 제목 (필수)"),
+                                        .description("할 일 제목"),
                                 fieldWithPath("data.content").type(JsonFieldType.STRING)
                                         .optional()
                                         .attributes(key("required").value("false"))
-                                        .description("할 일 내용 (선택)"),
+                                        .description("할 일 내용"),
                                 fieldWithPath("data.deleted").type(JsonFieldType.BOOLEAN)
                                         .attributes(key("required").value("true"))
-                                        .description("삭제 여부 (필수)"),
+                                        .description("삭제 여부"),
                                 fieldWithPath("data.completed").type(JsonFieldType.BOOLEAN)
                                         .attributes(key("required").value("true"))
-                                        .description("완료 여부 (필수)"),
+                                        .description("완료 여부"),
                                 fieldWithPath("data.createDateTime").type(JsonFieldType.STRING)
                                         .attributes(key("required").value("true"))
-                                        .description("생성 일시 (ISO-8601, 필수)"),
+                                        .description("생성 일시 (ISO-8601)"),
                                 fieldWithPath("data.modifiedDateTime").type(JsonFieldType.STRING)
                                         .attributes(key("required").value("true"))
-                                        .description("수정 일시 (ISO-8601, 필수)")
+                                        .description("수정 일시 (ISO-8601)")
                         )
                 ));
     }
@@ -384,37 +384,37 @@ class TodoControllerDocsTest extends RestDocsSupport {
                                 parameterWithName("id")
                                         .attributes(key("type").value("Number"))
                                         .attributes(key("required").value("true"))
-                                        .description("할 일 ID (필수)")
+                                        .description("할 일 ID")
                         ),
                         responseFields(
                                 fieldWithPath("status").type(JsonFieldType.NUMBER)
                                         .attributes(key("required").value("true"))
-                                        .description("HTTP 상태 코드 (필수)"),
+                                        .description("HTTP 상태 코드"),
                                 fieldWithPath("success").type(JsonFieldType.BOOLEAN)
                                         .attributes(key("required").value("true"))
-                                        .description("성공 여부 (필수)"),
+                                        .description("성공 여부"),
                                 fieldWithPath("data.id").type(JsonFieldType.NUMBER)
                                         .attributes(key("required").value("true"))
-                                        .description("할 일 ID (필수)"),
+                                        .description("할 일 ID"),
                                 fieldWithPath("data.title").type(JsonFieldType.STRING)
                                         .attributes(key("required").value("true"))
-                                        .description("할 일 제목 (필수)"),
+                                        .description("할 일 제목"),
                                 fieldWithPath("data.content").type(JsonFieldType.STRING)
                                         .optional()
                                         .attributes(key("required").value("false"))
-                                        .description("할 일 내용 (선택)"),
+                                        .description("할 일 내용"),
                                 fieldWithPath("data.deleted").type(JsonFieldType.BOOLEAN)
                                         .attributes(key("required").value("true"))
-                                        .description("삭제 여부 (필수)"),
+                                        .description("삭제 여부"),
                                 fieldWithPath("data.completed").type(JsonFieldType.BOOLEAN)
                                         .attributes(key("required").value("true"))
-                                        .description("완료 여부 (필수)"),
+                                        .description("완료 여부"),
                                 fieldWithPath("data.createDateTime").type(JsonFieldType.STRING)
                                         .attributes(key("required").value("true"))
-                                        .description("생성 일시 (ISO-8601, 필수)"),
+                                        .description("생성 일시 (ISO-8601)"),
                                 fieldWithPath("data.modifiedDateTime").type(JsonFieldType.STRING)
                                         .attributes(key("required").value("true"))
-                                        .description("수정 일시 (ISO-8601, 필수)")
+                                        .description("수정 일시 (ISO-8601)")
                         )
                 ));
     }
