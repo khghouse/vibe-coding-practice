@@ -9,6 +9,7 @@
 - 성공 응답 팩토리 메서드에서는 `ApiResponse.<T>` 타입 파라미터를 명시한다.
 - `LocalDateTime`을 포함한 Java Time 타입은 API 응답에서 배열이 아닌 ISO-8601 문자열로 직렬화한다.
 - 이를 위해 프로젝트 전역 Jackson 설정에서 `WRITE_DATES_AS_TIMESTAMPS`를 비활성화한다.
+- 삭제 성공 응답처럼 반환할 리소스 본문이 필요 없는 경우는 `ApiResponse<Void>`를 사용한다.
 
 ## 날짜 / 시간 응답 규칙
 
@@ -36,6 +37,15 @@
     "name": "홍길동",
     "email": "hong@example.com"
   }
+}
+```
+
+삭제 성공처럼 본문이 없는 경우:
+
+```json
+{
+  "status": 200,
+  "success": true
 }
 ```
 

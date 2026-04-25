@@ -52,10 +52,9 @@ public class TodoService {
     }
 
     @Transactional
-    public TodoResponse delete(Long id) {
+    public void delete(Long id) {
         Todo todo = getTodoOrThrow(id);
         todo.delete();
-        return TodoResponse.from(todo);
     }
 
     private Todo getActiveTodo(Long id) {

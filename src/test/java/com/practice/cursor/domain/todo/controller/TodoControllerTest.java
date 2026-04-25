@@ -169,15 +169,14 @@ class TodoControllerTest extends ControllerTestSupport {
 
     @Test
     @DisplayName("DELETE 소프트 삭제")
-    void delete_existingTodo_returnsOkWithDeletedTodo() throws Exception {
-        LocalDateTime now = LocalDateTime.of(2026, 4, 2, 12, 0, 0);
-        when(todoService.delete(1L)).thenReturn(new TodoResponse(1L, "할 일", null, false, now, now));
-
+    void delete_existingTodo_returnsOkWithoutData() throws Exception {
         mockMvc.perform(delete("/api/todos/1")
                         .with(csrf())
                         .with(authentication(authenticatedUser())))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.data.id").value(1))
-                .andExpect(jsonPath("$.data.completed").value(false));
+                .andExpect(jsonPath("$.success").value(true))
+                .andExpect(jsonPath("$.data").doesNotExist());
+
+        verify(todoService).delete(1L);
     }
 }

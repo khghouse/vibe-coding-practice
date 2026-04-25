@@ -342,18 +342,6 @@ class TodoControllerDocsTest extends RestDocsSupport {
     @Test
     @DisplayName("할 일 삭제 API 문서화")
     void deleteTodo_existingTodo_generatesDocument() throws Exception {
-        // given
-        TodoResponse response = new TodoResponse(
-                1L,
-                "할 일 제목",
-                "할 일 내용",
-                false,
-                LocalDateTime.of(2026, 4, 17, 12, 0, 0),
-                LocalDateTime.of(2026, 4, 17, 15, 0, 0)
-        );
-
-        given(todoService.delete(1L)).willReturn(response);
-
         // when & then
         mockMvc.perform(delete("/api/todos/{id}", 1L))
                 .andExpect(status().isOk())
@@ -370,26 +358,7 @@ class TodoControllerDocsTest extends RestDocsSupport {
                                         .description("HTTP 상태 코드"),
                                 fieldWithPath("success").type(JsonFieldType.BOOLEAN)
                                         .attributes(key("required").value("true"))
-                                        .description("성공 여부"),
-                                fieldWithPath("data.id").type(JsonFieldType.NUMBER)
-                                        .attributes(key("required").value("true"))
-                                        .description("할 일 ID"),
-                                fieldWithPath("data.title").type(JsonFieldType.STRING)
-                                        .attributes(key("required").value("true"))
-                                        .description("할 일 제목"),
-                                fieldWithPath("data.content").type(JsonFieldType.STRING)
-                                        .optional()
-                                        .attributes(key("required").value("false"))
-                                        .description("할 일 내용"),
-                                fieldWithPath("data.completed").type(JsonFieldType.BOOLEAN)
-                                        .attributes(key("required").value("true"))
-                                        .description("완료 여부"),
-                                fieldWithPath("data.createDateTime").type(JsonFieldType.STRING)
-                                        .attributes(key("required").value("true"))
-                                        .description("생성 일시 (ISO-8601)"),
-                                fieldWithPath("data.modifiedDateTime").type(JsonFieldType.STRING)
-                                        .attributes(key("required").value("true"))
-                                        .description("수정 일시 (ISO-8601)")
+                                        .description("성공 여부")
                         )
                 ));
     }

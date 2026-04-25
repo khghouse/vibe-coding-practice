@@ -54,7 +54,8 @@ public class TodoController {
     }
 
     @DeleteMapping("/{id}")
-    public ApiResponse<TodoResponse> delete(@PathVariable Long id) {
-        return ApiResponse.ok(todoService.delete(id));
+    public ApiResponse<Void> delete(@PathVariable Long id) {
+        todoService.delete(id);
+        return ApiResponse.ok();
     }
 }

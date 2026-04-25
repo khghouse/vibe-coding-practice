@@ -162,12 +162,9 @@ class TodoServiceTest extends IntegrationTestSupport {
         Todo savedTodo = todoRepository.save(Todo.create("할 일 제목", "할 일 내용"));
 
         // when
-        TodoResponse response = todoService.delete(savedTodo.getId());
+        todoService.delete(savedTodo.getId());
 
         // then
-        assertThat(response.id()).isEqualTo(savedTodo.getId());
-        assertThat(response.completed()).isFalse();
-
         // DB 검증
         Todo deletedTodo = todoRepository.findById(savedTodo.getId()).orElseThrow();
         assertThat(deletedTodo.isDeleted()).isTrue();
