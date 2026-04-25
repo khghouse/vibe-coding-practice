@@ -21,6 +21,7 @@
 - JWT 인증 필터는 Authorization 헤더에 Bearer 토큰이 존재하는 경우만 동작한다.
 - 토큰이 존재할 때의 검증 실패는 `JwtAuthenticationFilter`가 직접 응답한다.
 - 이 경우 `TOKEN_INVALID`, `TOKEN_EXPIRED`, `TOKEN_TYPE_INVALID`, `TOKEN_BLACKLISTED` 중 하나로 반환한다.
+- 인증이 완료된 이후 서비스 레이어에서 토큰 사용자와 인증 사용자의 정합성을 검증하는 경우 `TOKEN_OWNER_MISMATCH`를 반환한다.
 - `JwtAuthenticationEntryPoint`는 토큰이 없거나 인증 자체가 시작되지 못한 경우만 처리한다.
 - Authorization 헤더가 없으면 `TOKEN_MISSING`, 헤더 형식이 Bearer 규약에 맞지 않으면 `TOKEN_INVALID`를 반환한다.
 

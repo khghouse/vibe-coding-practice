@@ -131,6 +131,21 @@ class AuthServiceTest extends IntegrationTestSupport {
         verify(redisTokenService).deleteRefreshToken(1L);
     }
 
+    @Test
+    @DisplayName("토큰 사용자와 인증 사용자가 다르면 로그아웃에 실패한다")
+    void logout_tokenOwnerMismatch_throwsCustomException() {
+        // given
+        String accessToken = jwtTokenProvider.generateAccessToken(1L, Role.USER);
+
+        // when & then
+        assertThatThrownBy(() -> authService.logout(accessToken, 2L))
+                .isInstanceOf(CustomException.class)
+                .hasMessage(ErrorCode.TOKEN_OWNER_MISMATCH.getMessage());
+
+        verify(redisTokenService, never()).addToBlacklist(anyString(), anyLong());
+        verify(redisTokenService, never()).deleteRefreshToken(anyLong());
+    }
+
     private Member createMember(String loginId, String rawPassword, String nickname) {
         Member member = Member.create(loginId, passwordEncoder.encode(rawPassword), nickname);
         return memberRepository.save(member);

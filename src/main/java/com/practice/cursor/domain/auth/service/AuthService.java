@@ -2,6 +2,8 @@ package com.practice.cursor.domain.auth.service;
 
 import com.practice.cursor.domain.auth.dto.request.RegisterServiceRequest;
 import com.practice.cursor.domain.auth.dto.response.RegisterResponse;
+import com.practice.cursor.global.exception.CustomException;
+import com.practice.cursor.global.exception.ErrorCode;
 import com.practice.cursor.global.security.JwtTokenProvider;
 import com.practice.cursor.global.security.MemberAuthenticationProvider;
 import com.practice.cursor.global.security.MemberPrincipal;
@@ -105,6 +107,7 @@ public class AuthService {
     public void logout(String accessToken, Long memberId) {
         jwtTokenProvider.validateToken(accessToken);
         jwtTokenProvider.validateAccessTokenType(accessToken);
+        validateLogoutOwner(accessToken, memberId);
 
         // Access Token 블랙리스트에 추가
         long remainingTime = jwtTokenProvider.getTokenRemainingTime(accessToken);
@@ -114,4 +117,10 @@ public class AuthService {
         tokenRedisService.deleteRefreshToken(memberId);
     }
 
+    private void validateLogoutOwner(String accessToken, Long memberId) {
+        Long tokenMemberId = jwtTokenProvider.extractMemberId(accessToken);
+        if (!tokenMemberId.equals(memberId)) {
+            throw new CustomException(ErrorCode.TOKEN_OWNER_MISMATCH);
+        }
+    }
 }

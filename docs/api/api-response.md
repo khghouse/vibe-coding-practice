@@ -72,4 +72,5 @@
 - 동적 메시지가 필요한 경우 `ErrorCode#formatMessage(...)`와 `CustomException(ErrorCode, Object...)`를 사용한다.
 - 인증 실패 응답은 보안 컴포넌트가 직접 제어한다.
 - JWT 토큰이 존재하는 경우의 검증 실패는 `JwtAuthenticationFilter`가 `TOKEN_INVALID`, `TOKEN_EXPIRED`, `TOKEN_TYPE_INVALID`, `TOKEN_BLACKLISTED` 중 하나로 반환한다.
+- 로그아웃처럼 인증 이후 서비스 레이어에서 토큰 소유자 정합성을 검증하는 경우 `TOKEN_OWNER_MISMATCH`를 반환할 수 있다.
 - Authorization 헤더가 없는 경우는 `JwtAuthenticationEntryPoint`가 `TOKEN_MISSING`으로 반환한다.

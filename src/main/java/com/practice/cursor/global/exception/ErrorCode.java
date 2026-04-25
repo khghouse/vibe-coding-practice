@@ -35,6 +35,7 @@ public enum ErrorCode {
     TOKEN_EXPIRED(401, "TOKEN_EXPIRED", "토큰이 만료되었습니다."),
     TOKEN_INVALID(401, "TOKEN_INVALID", "유효하지 않은 토큰입니다."),
     TOKEN_TYPE_INVALID(401, "TOKEN_TYPE_INVALID", "토큰 타입이 올바르지 않습니다."),
+    TOKEN_OWNER_MISMATCH(401, "TOKEN_OWNER_MISMATCH", "토큰 사용자와 인증 사용자가 일치하지 않습니다."),
     TOKEN_MISSING(401, "TOKEN_MISSING", "토큰이 없습니다."),
     TOKEN_BLACKLISTED(401, "TOKEN_BLACKLISTED", "로그아웃된 토큰입니다."),
     REFRESH_TOKEN_NOT_FOUND(401, "REFRESH_TOKEN_NOT_FOUND", "유효하지 않은 리프레시 토큰입니다.");
